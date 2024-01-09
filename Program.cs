@@ -18,7 +18,7 @@ namespace pr16
             Console.WriteLine("Введите путь к сохраненному файлу и укажите имя файла, \n\tнапример: C:\\Users\\Denis\\source\\repos\\pr16\\pr16.txt");
             filepath = Console.ReadLine();
 
-            if (string.IsNullOrEmpty(filepath))
+            if (String.IsNullOrEmpty(filepath))
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Вы ввели пустой путь к файлу.");
