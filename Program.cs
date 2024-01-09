@@ -39,10 +39,8 @@ namespace pr16
                         {
                             Mas[i, j] = (rnd.NextDouble() * 20) - 10; // Генерация числа в интервале [-10, 10]
 
-                            if (j % 2 != 0)
-                            {
-                                product *= Mas[i, j];
-                            }
+                            if (j % 2 != 0) product *= Mas[i, j];
+
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write(Mas[i, j] + "\n");
                             Console.ForegroundColor = ConsoleColor.White;
