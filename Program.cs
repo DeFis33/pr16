@@ -65,6 +65,12 @@ namespace pr16
                     Console.WriteLine("Ошибка формата числа: {0}", fe.Message);
                     Console.BackgroundColor = ConsoleColor.White;
                 }
+                catch (Exception e)
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Ошибка формата числа: {0}", e.Message);
+                    Console.BackgroundColor = ConsoleColor.White;
+                }
             }
         }
     }
