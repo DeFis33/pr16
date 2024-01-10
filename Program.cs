@@ -4,6 +4,9 @@
 //* Задание: разработать программу алгоритма решения задачи, используя библиотеки работы с файлами  *
 //***************************************************************************************************
 
+using System.IO;
+using System;
+
 namespace pr16
 {
     internal class Program
@@ -11,11 +14,10 @@ namespace pr16
         static void Main(string[] args)
         {
             string filepath;
-            int M = 3, N = 3;
             double product = 1.0;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Практическая работа № 16.");
-            Console.WriteLine("Введите путь к сохраненному файлу и укажите имя файла, \n\tнапример: C:\\Users\\Denis\\source\\repos\\pr16\\pr16.txt");
+            Console.WriteLine("Введите путь к сохраненному файлу и укажите имя файла, \n\tнапример: D:\\Users\\1213-5\\Documents\\2-ИСП\\Дисциплина\\Основы программирования\\Фамилия\\Пирогов Д\\pr16\\pr16.txt");
             filepath = Console.ReadLine();
 
             if (String.IsNullOrEmpty(filepath))
@@ -31,6 +33,10 @@ namespace pr16
                     FileStream F = new FileStream(filepath, FileMode.Create);
                     StreamWriter writer = new StreamWriter(F);
                     Random rnd = new Random();
+                    Console.WriteLine("\nВведите кол-во строк: ");
+                    int M = Int32.Parse(Console.ReadLine());
+                    Console.WriteLine("\nВведите кол-во стобцов: ");
+                    int N = Int32.Parse(Console.ReadLine());
                     double[,] Mas = new double[M, N];
 
                     for (int i = 0; i < M; i++)
@@ -55,23 +61,24 @@ namespace pr16
                 }
                 catch (IOException e)
                 {
-                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Ошибка открытия/записи файла. Проверьте месторасположение файла!\n", e.Message);
-                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 catch (FormatException fe)
                 {
-                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Ошибка формата числа: {0}", fe.Message);
-                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 catch (Exception e)
                 {
-                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Ошибка формата числа: {0}", e.Message);
-                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
+            Console.ReadKey();
         }
     }
 }
