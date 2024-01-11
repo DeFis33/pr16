@@ -13,11 +13,13 @@ namespace pr16
     {
         static void Main(string[] args)
         {
-            string filepath;
+            string filepath, s;
             double product = 1.0;
+            double[] mas = null;
+            int n = 0;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Практическая работа № 16.");
-            Console.WriteLine("Введите путь к сохраненному файлу и укажите имя файла, \n\tнапример: D:\\Users\\1213-5\\Documents\\2-ИСП\\Дисциплина\\Основы программирования\\Фамилия\\Пирогов Д\\pr16\\pr16.txt");
+            Console.Write("Введите путь к сохраненному файлу: ");
             filepath = Console.ReadLine();
 
             if (String.IsNullOrEmpty(filepath))
@@ -72,21 +74,24 @@ namespace pr16
                     Console.ForegroundColor = ConsoleColor.White;
                 }
 
-                double[] mas = null;
-                string s;
                 try
                 {
+                    Array.Resize(ref mas, n);
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("\nСодержимое файла {0}: ", filepath);
                     FileStream F1 = new FileStream(filepath, FileMode.Open);
                     StreamReader reader = new StreamReader(F1);
-                    while ((s = reader.ReadLine()) != null) 
+                    while ((s = reader.ReadLine()) != null)
                     {
                         s = s.TrimEnd(' ');
                         string[] text = s.Split(' ');
+                        Array.Resize(ref mas, mas.Length + text.Length);
                         for (int j = 0; j < text.Length; j++)
                         {
-                            mas[j] = Convert.ToDouble(text[j]);
+                            mas[n++] = Convert.ToDouble(text[j]);
                         }
                     }
+                    Console.ForegroundColor = ConsoleColor.White;
                     F1.Close();
                 }
                 catch (IOException e)
@@ -107,9 +112,14 @@ namespace pr16
                     Console.WriteLine("Ошибка формата числа: {0}", e.Message);
                     Console.ForegroundColor = ConsoleColor.White;
                 }
+                foreach (double element in mas)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(element);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                Console.ReadKey();
             }
-            Console.ReadKey();
         }
     }
 }
-// нужно, чтобы файл еще и считывался, а потом уже выводил произведение
